@@ -6,11 +6,11 @@ export default function Homepage() {
 
   useEffect(() => {
     if (!localStorage.getItem("username")) {
-      navigate("/login");
+      navigate("/register");
     } else {
       navigate("/" + localStorage.getItem("username"));
     }
   });
 
-  return <>Homepage</>;
+  return <></>;
 }
