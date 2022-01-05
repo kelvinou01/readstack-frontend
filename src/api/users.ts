@@ -1,9 +1,5 @@
 import request from "./client";
-import {
-  ICreateUserRequest,
-  IListUsersRequest,
-  IUpdateUserRequest,
-} from "./request";
+import { ICreateUserRequest, IUpdateUserRequest } from "./request";
 import { IUserResponse } from "./response";
 
 export async function createUser(data: ICreateUserRequest) {
@@ -29,11 +25,10 @@ export async function retrieveUser(id: number) {
   return response.data;
 }
 
-export async function listUsers(params: IListUsersRequest) {
+export async function listUsers() {
   const response = await request({
     method: "GET",
     url: "/users",
-    params,
     headers: {
       Authorization: localStorage.getItem("token") as string,
     },

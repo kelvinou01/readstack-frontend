@@ -73,7 +73,6 @@ export default function ProfilePage() {
                   e.preventDefault();
                   await createStack({
                     name: newStackName,
-                    user_id: 1,
                   });
                   refetch();
                 }}
@@ -115,6 +114,7 @@ export default function ProfilePage() {
         )}
         {stacks?.map((stack) => (
           <Stack
+            key={stack.id}
             stack={stack}
             isOwnProfile={isOwnProfile}
             onEditStackName={async (id, newName) => {

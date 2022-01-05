@@ -14,7 +14,6 @@ export async function createStack(data: ICreateStackRequest) {
     url: "/stacks",
     headers: {
       Authorization: localStorage.getItem("token") as string,
-      // localStorage.getItem("token") as string,
     },
   });
   return response.data;
@@ -33,9 +32,9 @@ export async function listStacks(
   params: IListStacksRequest
 ): Promise<IStackResponse[] | undefined> {
   const response = await request({
-    url: "/stacks",
-    method: "GET",
     params,
+    method: "GET",
+    url: "/stacks",
   });
 
   return response.data.data;

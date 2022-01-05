@@ -109,17 +109,19 @@ const Stack: React.FC<StackProps> = function (props) {
           </HStack>
           {isOwnProfile && (
             <Menu placement="bottom-end">
-              <MenuButton>
-                <IconButton
-                  aria-label="stack settings"
-                  variant="ghost"
-                  size="md"
-                  _focus={{
-                    boxShadow: "none",
-                  }}
-                  icon={showAddBook ? <BsThreeDots /> : <BsThreeDots />}
-                />
-              </MenuButton>
+              <MenuButton
+                as={IconButton}
+                aria-label="stack settings"
+                variant="ghost"
+                size="md"
+                _focus={{
+                  boxShadow: "none",
+                }}
+                _active={{
+                  boxShadow: "none",
+                }}
+                icon={<BsThreeDots />}
+              />
 
               <MenuList>
                 <MenuItem
@@ -163,7 +165,7 @@ const Stack: React.FC<StackProps> = function (props) {
       <Grid templateColumns="repeat(5, 1fr)" gap="8px" mb="20px">
         {books?.map((book) => {
           return (
-            <GridItem rowSpan={1} colSpan={1}>
+            <GridItem key={book.id} rowSpan={1} colSpan={1}>
               {showAddBook ? (
                 <Box pos="relative" className="book">
                   <Image

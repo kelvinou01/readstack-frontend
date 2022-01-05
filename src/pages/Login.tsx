@@ -38,7 +38,7 @@ function PasswordInput(props: any) {
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [failedAuth, setFailedAuth] = useState(false);
+  const [showFailureMessage, setShowFailureMessage] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -56,11 +56,11 @@ export default function LoginPage() {
             username,
             password,
           });
-          setFailedAuth(false);
+          setShowFailureMessage(false);
           navigate("/" + username);
         } catch (err) {
           console.log(err);
-          setFailedAuth(true);
+          setShowFailureMessage(true);
         } finally {
           setUsername("");
           setPassword("");
@@ -91,7 +91,7 @@ export default function LoginPage() {
         </FormControl>
       </VStack>
 
-      {failedAuth ? (
+      {showFailureMessage ? (
         <Text color="red.500" align="center" mt={1}>
           The username or password you entered is incorrect{" "}
         </Text>
