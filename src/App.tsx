@@ -85,14 +85,14 @@ function App() {
                   <MenuList>
                     <MenuItem
                       onClick={() => {
-                        navigate("../" + localStorage.getItem("username"));
+                        navigate("/" + localStorage.getItem("username"));
                       }}
                     >
                       My Readstack
                     </MenuItem>
                     <MenuItem
                       onClick={() => {
-                        navigate("../" + localStorage.getItem("username"));
+                        navigate("/settings");
                       }}
                     >
                       Settings
@@ -101,7 +101,7 @@ function App() {
                       onClick={() => {
                         localStorage.removeItem("token");
                         localStorage.removeItem("username");
-                        navigate("../login");
+                        navigate("/login");
                       }}
                     >
                       Log out

@@ -1,6 +1,5 @@
 export interface ICreateStackRequest {
   name: string;
-  user_id: number;
 }
 
 export type IUpdateStackRequest = {
@@ -37,6 +36,9 @@ export interface ILoginRequest {
   password: string;
 }
 
-export type IUpdateUserRequest = ICreateUserRequest;
+export type IUpdateUserRequest = {
+  old_password: string;
+  new_password: string;
+};
 
 export interface IListUsersRequest {}

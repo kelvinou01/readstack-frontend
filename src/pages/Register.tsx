@@ -39,7 +39,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [failedRegister, setFailedRegister] = useState(false);
+  const [showFailureMessage, setShowFailureMessage] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -58,10 +58,10 @@ export default function RegisterPage() {
             email,
             password,
           });
-          setFailedRegister(false);
+          setShowFailureMessage(false);
           navigate("/" + username);
         } catch {
-          setFailedRegister(true);
+          setShowFailureMessage(true);
         } finally {
           setEmail("");
           setUsername("");
@@ -106,7 +106,7 @@ export default function RegisterPage() {
         </FormControl>
       </VStack>
 
-      {failedRegister ? (
+      {showFailureMessage ? (
         <Text color="red.500" align="center" mt={1}>
           The username or email you entered has already been taken{" "}
         </Text>
