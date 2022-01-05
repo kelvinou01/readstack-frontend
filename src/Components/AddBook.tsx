@@ -57,18 +57,21 @@ const AddBook: React.FC<AddBookProps> = function (props) {
           <Wrap templateColumns="repeat(5, 1fr)" gap="5px">
             {items?.map((item: any) => {
               if (item.volumeInfo.imageLinks?.thumbnail) {
+                const coverImageUrl =
+                  item.volumeInfo.imageLinks.thumbnail.replace(
+                    "http://",
+                    "https://"
+                  );
                 return (
                   <WrapItem>
                     <Image
                       boxSize="160px"
-                      src={item.volumeInfo.imageLinks?.thumbnail}
+                      src={coverImageUrl}
                       onClick={() => {
                         const title = item.volumeInfo.title;
                         const authors = item.volumeInfo.authors
                           .join()
                           .replaceAll("", ", ");
-                        const coverImageUrl =
-                          item.volumeInfo.imageLinks.thumbnail;
                         props.onAddBook(title, authors, coverImageUrl);
                       }}
                       _hover={{
