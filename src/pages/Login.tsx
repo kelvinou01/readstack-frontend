@@ -1,5 +1,6 @@
 import {
   Button,
+  Flex,
   FormControl,
   Input,
   InputGroup,
@@ -8,7 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link as ReachLink, useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 
@@ -37,20 +38,33 @@ function PasswordInput(props: any) {
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [failedAuth, setFailedAuth] = useState(false);
   const navigate = useNavigate();
 
-  // localStorage.setItem("token", token)
+  useEffect(() => {
+    if (localStorage.getItem("username")) {
+      navigate("/" + localStorage.getItem("username"));
+    }
+  });
+
   return (
     <form
       onSubmit={async (e) => {
         e.preventDefault();
-        await login({
-          username,
-          password,
-        });
-        navigate("/" + username);
-        setUsername("");
-        setPassword("");
+        try {
+          await login({
+            username,
+            password,
+          });
+          setFailedAuth(false);
+          navigate("/" + username);
+        } catch (err) {
+          console.log(err);
+          setFailedAuth(true);
+        } finally {
+          setUsername("");
+          setPassword("");
+        }
       }}
     >
       <VStack spacing={4}>
@@ -75,7 +89,17 @@ export default function LoginPage() {
             value={password}
           />
         </FormControl>
+      </VStack>
 
+      {failedAuth ? (
+        <Text color="red.500" align="center" mt={1}>
+          The username or password you entered is incorrect{" "}
+        </Text>
+      ) : (
+        <Flex mt={4}></Flex>
+      )}
+
+      <VStack spacing={4}>
         <Button size="md" width="full" type="submit">
           Login
         </Button>

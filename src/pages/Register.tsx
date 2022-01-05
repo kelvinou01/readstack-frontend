@@ -1,5 +1,6 @@
 import {
   Button,
+  Flex,
   FormControl,
   Input,
   InputGroup,
@@ -8,7 +9,7 @@ import {
   Text,
   VStack,
 } from "@chakra-ui/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link as ReachLink, useNavigate } from "react-router-dom";
 import { register } from "../api/auth";
 
@@ -38,21 +39,34 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [failedRegister, setFailedRegister] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem("username")) {
+      navigate("/" + localStorage.getItem("username"));
+    }
+  });
 
   return (
     <form
       onSubmit={async (e) => {
         e.preventDefault();
-        await register({
-          username,
-          email,
-          password,
-        });
-        navigate("/" + username);
-        setEmail("");
-        setUsername("");
-        setPassword("");
+        try {
+          await register({
+            username,
+            email,
+            password,
+          });
+          setFailedRegister(false);
+          navigate("/" + username);
+        } catch {
+          setFailedRegister(true);
+        } finally {
+          setEmail("");
+          setUsername("");
+          setPassword("");
+        }
       }}
     >
       <VStack spacing={4}>
@@ -90,9 +104,19 @@ export default function RegisterPage() {
             value={password}
           />
         </FormControl>
+      </VStack>
 
+      {failedRegister ? (
+        <Text color="red.500" align="center" mt={1}>
+          The username or email you entered has already been taken{" "}
+        </Text>
+      ) : (
+        <Flex mt={4}></Flex>
+      )}
+
+      <VStack spacing={4}>
         <Button size="md" width="full" type="submit">
-          Create a new account
+          Create an account
         </Button>
 
         <Text>

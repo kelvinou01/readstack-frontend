@@ -6,14 +6,21 @@ import {
   Divider,
   Flex,
   Heading,
+  Link,
   Menu,
   MenuButton,
   MenuItem,
   MenuList,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useMemo } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter,
+  Link as ReachLink,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Homepage from "./pages";
 import LoginPage from "./pages/Login";
 import ProfilePage from "./pages/Profile";
@@ -32,6 +39,11 @@ const AppWrapper = () => {
 function App() {
   const navigate = useNavigate();
   const queryClient = new QueryClient();
+
+  const username = useMemo(
+    () => localStorage.getItem("username"),
+    [localStorage.getItem("username")]
+  );
 
   return (
     <ChakraProvider theme={theme}>
@@ -54,27 +66,49 @@ function App() {
               alignItems="center"
             >
               <Heading size="2xl" color="brand.600" fontWeight="700">
-                👋🏻 Readstack
+                <Link as={ReachLink} to="/" style={{ textDecoration: "none" }}>
+                  {" "}
+                  👋🏻 Readstack
+                </Link>
               </Heading>
 
-              <Menu placement="bottom-end">
-                <MenuButton>
-                  <Avatar width={10} height={10} bg="brand.500" name="K" />
-                </MenuButton>
-
-                <MenuList>
-                  <MenuItem>My Account</MenuItem>
-                  <MenuItem
-                    onClick={() => {
-                      localStorage.removeItem("token");
-                      localStorage.removeItem("username");
-                      navigate("../login");
-                    }}
-                  >
-                    Log out
-                  </MenuItem>
-                </MenuList>
-              </Menu>
+              {username && (
+                <Menu placement="bottom-end">
+                  <MenuButton>
+                    <Avatar
+                      width={10}
+                      height={10}
+                      bg="brand.500"
+                      name={username.charAt(0)}
+                    />
+                  </MenuButton>
+                  <MenuList>
+                    <MenuItem
+                      onClick={() => {
+                        navigate("../" + localStorage.getItem("username"));
+                      }}
+                    >
+                      My Readstack
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        navigate("../" + localStorage.getItem("username"));
+                      }}
+                    >
+                      Settings
+                    </MenuItem>
+                    <MenuItem
+                      onClick={() => {
+                        localStorage.removeItem("token");
+                        localStorage.removeItem("username");
+                        navigate("../login");
+                      }}
+                    >
+                      Log out
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              )}
             </Flex>
             <Divider mb={2}></Divider>
             <Routes>
