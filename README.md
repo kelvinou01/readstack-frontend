@@ -1,4 +1,6 @@
 # Readstack
+### Aesthetically pleasing reading lists with Google Books search API. 
+
 Frontend: React + Chakra.ui on TypeScript
 
 Backend: Adonis.js on Node.js
