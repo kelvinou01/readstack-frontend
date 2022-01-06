@@ -3,7 +3,7 @@
 
 Frontend: React + Chakra.ui on TypeScript
 
-Backend: Adonis.js on Node.js
+Backend: Adonis.js on Node.js and TypeScript
 
 Database: Postgres
 
