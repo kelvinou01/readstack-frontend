@@ -15,8 +15,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { BsDashLg, BsPlusLg, BsThreeDots } from "react-icons/bs";
-import { useQuery, useQueryClient } from "react-query";
-import { useParams } from "react-router-dom";
+import { useQuery } from "react-query";
 import { createBook, listBooks } from "../api/books";
 import { IStackResponse } from "../api/response";
 import AddBook from "./AddBook";
@@ -32,8 +31,6 @@ interface StackProps {
 }
 
 const Stack: React.FC<StackProps> = function (props) {
-  const params = useParams();
-  const queryClient = useQueryClient();
   const { stack, isOwnProfile } = props;
 
   const [showAddBook, setShowAddBook] = useState(false);

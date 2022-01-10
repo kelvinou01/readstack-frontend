@@ -1,5 +1,5 @@
 import { CloseIcon } from "@chakra-ui/icons";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { AspectRatio, Box, Flex, Image, Text } from "@chakra-ui/react";
 import { IBookResponse } from "../api/response";
 
 interface BookProps {
@@ -12,11 +12,14 @@ interface BookProps {
 const Book: React.FC<BookProps> = function (props) {
   return (
     <>
-      <Image
-        borderRadius={4}
-        src={props.book.cover_photo_url}
-        alt={props.book.title}
-      />
+      <AspectRatio ratio={2 / 3}>
+        <Image
+          borderRadius={4}
+          src={props.book.cover_photo_url}
+          alt={props.book.title}
+        />
+      </AspectRatio>
+
       <Box
         className="book-overlay"
         pos="absolute"
