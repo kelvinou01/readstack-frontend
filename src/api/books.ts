@@ -3,7 +3,6 @@ import { ICreateBookRequest, IListBooksRequest } from "./request";
 import { IBookResponse } from "./response";
 
 export async function createBook(data: ICreateBookRequest) {
-  console.log(localStorage.getItem("token") as string);
   const response = await request<IBookResponse>({
     data,
     method: "POST",
