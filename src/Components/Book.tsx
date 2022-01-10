@@ -1,8 +1,15 @@
 import { CloseIcon } from "@chakra-ui/icons";
 import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { IBookResponse } from "../api/response";
 
-export default function Book(props: any) {
-  // rmb to write interface
+interface BookProps {
+  book: IBookResponse;
+  showAddBook: boolean;
+  onDeleteBook: (id: number) => any;
+  refetch: () => any;
+}
+
+const Book: React.FC<BookProps> = function (props) {
   return (
     <>
       <Image
@@ -45,4 +52,6 @@ export default function Book(props: any) {
       </Box>
     </>
   );
-}
+};
+
+export default Book;

@@ -13,7 +13,12 @@ import { useEffect, useState } from "react";
 import { Link as ReachLink, useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 
-function PasswordInput(props: any) {
+interface PasswordInputProps {
+  onChange: (e: React.FormEvent<HTMLInputElement>) => any;
+  value: string;
+}
+
+function PasswordInput(props: PasswordInputProps) {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
 
@@ -59,7 +64,6 @@ export default function LoginPage() {
           setShowFailureMessage(false);
           navigate("/" + username);
         } catch (err) {
-          console.log(err);
           setShowFailureMessage(true);
         } finally {
           setUsername("");
