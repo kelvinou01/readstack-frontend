@@ -71,7 +71,8 @@ const AddBook: React.FC<AddBookProps> = function (props) {
                         const title = item.volumeInfo.title;
                         const authors = item.volumeInfo.authors
                           .join()
-                          .replaceAll("", ", ");
+                          .replace(",", ", ");
+                        console.log(authors);
                         props.onAddBook(title, authors, coverImageUrl);
                       }}
                       _hover={{

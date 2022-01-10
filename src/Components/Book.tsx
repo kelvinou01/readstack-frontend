@@ -1,36 +1,48 @@
-import {
-  Button,
-  Modal,
-  ModalBody,
-  ModalCloseButton,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  ModalOverlay,
-  useDisclosure,
-} from "@chakra-ui/react";
+import { CloseIcon } from "@chakra-ui/icons";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 
-export default function Book() {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+export default function Book(props: any) {
+  // rmb to write interface
   return (
     <>
-      <Button onClick={onOpen}>Open Modal</Button>
-    
-      <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Modal Title</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>{/* <Lorem count={2} /> */}</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={onClose}>
-              Close
-            </Button>
-            <Button variant="ghost">Secondary Action</Button>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
+      <Image
+        borderRadius={4}
+        src={props.book.cover_photo_url}
+        alt={props.book.title}
+      />
+      <Box
+        className="book-overlay"
+        pos="absolute"
+        width="full"
+        height="full"
+        top="0"
+        left="0"
+        background="rgba(0,0,0,.5)"
+        transition="opacity 200ms"
+        opacity={0}
+        color="white"
+      >
+        {props.showAddBook ? (
+          <Flex justifyContent="flex-end">
+            <CloseIcon
+              cursor="pointer"
+              margin={3}
+              color="white"
+              onClick={async () => {
+                await props.onDeleteBook(props.book.id);
+                props.refetch();
+              }}
+            />
+          </Flex>
+        ) : (
+          <Box padding="5px">
+            <Text fontSize="sm" fontWeight={500}>
+              {props.book.title}
+            </Text>
+            <Text fontSize="xs">{"by " + props.book.author}</Text>
+          </Box>
+        )}
+      </Box>
     </>
   );
 }

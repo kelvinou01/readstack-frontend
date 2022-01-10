@@ -1,4 +1,3 @@
-import { CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   Flex,
@@ -7,7 +6,6 @@ import {
   Heading,
   HStack,
   IconButton,
-  Image,
   Input,
   Menu,
   MenuButton,
@@ -22,6 +20,7 @@ import { useParams } from "react-router-dom";
 import { createBook, listBooks } from "../api/books";
 import { IStackResponse } from "../api/response";
 import AddBook from "./AddBook";
+import Book from "./Book";
 import "./hover.css";
 
 interface onEditStackName {
@@ -166,45 +165,14 @@ const Stack: React.FC<StackProps> = function (props) {
         {books?.map((book) => {
           return (
             <GridItem key={book.id} rowSpan={1} colSpan={1}>
-              {showAddBook ? (
-                <Box pos="relative" className="book">
-                  <Image
-                    borderRadius={4}
-                    src={book.cover_photo_url}
-                    alt={book.title}
-                  />
-                  <Box
-                    className="book-overlay"
-                    pos="absolute"
-                    width="full"
-                    height="full"
-                    top="0"
-                    left="0"
-                    background="rgba(0,0,0,.5)"
-                    transition="opacity 200ms"
-                    opacity={0}
-                    color="white"
-                  >
-                    <Flex justifyContent="flex-end">
-                      <CloseIcon
-                        cursor="pointer"
-                        margin={3}
-                        color="white"
-                        onClick={async () => {
-                          await props.onDeleteBook(book.id);
-                          refetch();
-                        }}
-                      />
-                    </Flex>
-                  </Box>
-                </Box>
-              ) : (
-                <Image
-                  borderRadius={4}
-                  src={book.cover_photo_url}
-                  alt={book.title}
+              <Box pos="relative" className="book">
+                <Book
+                  book={book}
+                  showAddBook={showAddBook}
+                  onDeleteBook={props.onDeleteBook}
+                  refetch={refetch}
                 />
-              )}
+              </Box>
             </GridItem>
           );
         })}
