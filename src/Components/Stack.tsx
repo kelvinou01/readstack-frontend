@@ -172,7 +172,6 @@ const Stack: React.FC<StackProps> = function (props) {
                     borderRadius={4}
                     src={book.cover_photo_url}
                     alt={book.title}
-                    onMouseOver={() => null}
                   />
                   <Box
                     className="book-overlay"
