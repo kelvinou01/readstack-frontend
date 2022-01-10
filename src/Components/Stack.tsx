@@ -23,23 +23,11 @@ import AddBook from "./AddBook";
 import Book from "./Book";
 import "./hover.css";
 
-interface onEditStackName {
-  (id: number, newName: string): any;
-}
-
-interface onDeleteStack {
-  (id: number): any;
-}
-
-interface onDeleteBook {
-  (id: number): any;
-}
-
 interface StackProps {
   stack: IStackResponse;
-  onEditStackName: onEditStackName;
-  onDeleteStack: onDeleteStack;
-  onDeleteBook: onDeleteBook;
+  onEditStackName: (id: number, newName: string) => any;
+  onDeleteStack: (id: number) => any;
+  onDeleteBook: (id: number) => any;
   isOwnProfile: boolean;
 }
 

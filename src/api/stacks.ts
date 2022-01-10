@@ -7,7 +7,6 @@ import {
 import { IStackResponse } from "./response";
 
 export async function createStack(data: ICreateStackRequest) {
-  console.log("start");
   const response = await request<IStackResponse>({
     data,
     method: "POST",
@@ -54,7 +53,6 @@ export async function updateStack(id: number, data: IUpdateStackRequest) {
 }
 
 export async function deleteStack(id: number) {
-  console.log("lol");
   const response = await request({
     method: "DELETE",
     url: "/stacks/" + id,
@@ -62,6 +60,5 @@ export async function deleteStack(id: number) {
       Authorization: localStorage.getItem("token") as string,
     },
   });
-  console.log("lel");
   return response.data;
 }

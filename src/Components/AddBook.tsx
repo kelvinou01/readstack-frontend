@@ -10,12 +10,8 @@ import {
 import { debounce } from "lodash";
 import { useState } from "react";
 
-interface onAddBook {
-  (title: string, author: string, coverPhotoUrl: string): any;
-}
-
 interface AddBookProps {
-  onAddBook: onAddBook;
+  onAddBook: (title: string, author: string, coverPhotoUrl: string) => any;
 }
 
 const AddBook: React.FC<AddBookProps> = function (props) {
@@ -72,7 +68,6 @@ const AddBook: React.FC<AddBookProps> = function (props) {
                         const authors = item.volumeInfo.authors
                           .join()
                           .replace(",", ", ");
-                        console.log(authors);
                         props.onAddBook(title, authors, coverImageUrl);
                       }}
                       _hover={{
