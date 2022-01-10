@@ -49,7 +49,7 @@ const Book: React.FC<BookProps> = function (props) {
             <Text fontSize="sm" fontWeight={500}>
               {props.book.title}
             </Text>
-            <Text fontSize="xs">{"by " + props.book.author}</Text>
+            <Text fontSize="12">{"by " + props.book.author}</Text>
           </Box>
         )}
       </Box>

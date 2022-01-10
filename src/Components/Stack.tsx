@@ -146,7 +146,7 @@ const Stack: React.FC<StackProps> = function (props) {
         />
       )}
 
-      <Grid templateColumns="repeat(5, 1fr)" gap="8px" mb="20px">
+      <Grid templateColumns="repeat(6, 1fr)" gap="7px" mb="20px">
         {books?.map((book) => {
           return (
             <GridItem key={book.id} rowSpan={1} colSpan={1}>

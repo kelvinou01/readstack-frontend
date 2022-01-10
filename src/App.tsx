@@ -48,7 +48,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <Container maxW="container.md" margin="auto">
+        <Container maxW="825px" margin="auto">
           <Box
             padding={8}
             margin={6}
