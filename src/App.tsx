@@ -21,11 +21,11 @@ import {
   Routes,
   useNavigate,
 } from "react-router-dom";
-import Homepage from "./pages";
-import LoginPage from "./pages/Login";
-import ProfilePage from "./pages/Profile";
-import RegisterPage from "./pages/Register";
-import Settings from "./pages/Settings";
+import Homepage from "./Pages";
+import LoginPage from "./Pages/Login";
+import ProfilePage from "./Pages/Profile";
+import RegisterPage from "./Pages/Register";
+import Settings from "./Pages/Settings";
 import theme from "./theme";
 
 const AppWrapper = () => {
@@ -48,7 +48,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <QueryClientProvider client={queryClient}>
-        <Container maxW="container.md" margin="auto">
+        <Container maxW="825px" margin="auto">
           <Box
             padding={8}
             margin={6}
