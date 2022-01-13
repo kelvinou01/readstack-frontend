@@ -3,6 +3,7 @@ import {
   Flex,
   FormControl,
   Input,
+  Link,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -16,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
-import { useParams } from "react-router-dom";
+import { Link as ReachLink, useParams } from "react-router-dom";
 import { deleteBook } from "../api/books";
 import {
   createStack,
@@ -131,6 +132,23 @@ export default function ProfilePage() {
             }}
           ></Stack>
         ))}
+        {!isOwnProfile && (
+          <Text
+            fontSize="xl"
+            fontWeight="600"
+            color="brand.600"
+            textAlign="center"
+            mt={10}
+          >
+            <Link
+              as={ReachLink}
+              to="/register"
+              style={{ textDecoration: "none" }}
+            >
+              Create your own readstack 📚
+            </Link>
+          </Text>
+        )}
       </>
     );
   }
