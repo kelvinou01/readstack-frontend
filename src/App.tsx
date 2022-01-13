@@ -11,6 +11,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
+  Portal,
 } from "@chakra-ui/react";
 import React, { useMemo } from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -82,31 +83,33 @@ function App() {
                       name={username.charAt(0)}
                     />
                   </MenuButton>
-                  <MenuList>
-                    <MenuItem
-                      onClick={() => {
-                        navigate("/" + localStorage.getItem("username"));
-                      }}
-                    >
-                      My Readstack
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        navigate("/settings");
-                      }}
-                    >
-                      Settings
-                    </MenuItem>
-                    <MenuItem
-                      onClick={() => {
-                        localStorage.removeItem("token");
-                        localStorage.removeItem("username");
-                        navigate("/login");
-                      }}
-                    >
-                      Log out
-                    </MenuItem>
-                  </MenuList>
+                  <Portal>
+                    <MenuList zIndex={999} textColor="brand.600">
+                      <MenuItem
+                        onClick={() => {
+                          navigate("/" + localStorage.getItem("username"));
+                        }}
+                      >
+                        My Readstack
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          navigate("/settings");
+                        }}
+                      >
+                        Settings
+                      </MenuItem>
+                      <MenuItem
+                        onClick={() => {
+                          localStorage.removeItem("token");
+                          localStorage.removeItem("username");
+                          navigate("/login");
+                        }}
+                      >
+                        Log out
+                      </MenuItem>
+                    </MenuList>
+                  </Portal>
                 </Menu>
               )}
             </Flex>
