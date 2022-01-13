@@ -68,7 +68,6 @@ function App() {
             >
               <Heading size="2xl" color="brand.600" fontWeight="700">
                 <Link as={ReachLink} to="/" style={{ textDecoration: "none" }}>
-                  {" "}
                   👋🏻 Readstack
                 </Link>
               </Heading>
