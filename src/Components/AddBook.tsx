@@ -1,8 +1,8 @@
 import {
   Box,
   FormControl,
-  Grid as Wrap,
-  GridItem as WrapItem,
+  Grid,
+  GridItem,
   Image,
   Input,
   VStack,
@@ -50,7 +50,7 @@ const AddBook: React.FC<AddBookProps> = function (props) {
           boxShadow="md"
           overflow="hidden"
         >
-          <Wrap templateColumns="repeat(5, 1fr)" gap="5px">
+          <Grid templateColumns="repeat(5, 1fr)" gap="5px">
             {items?.map((item: any) => {
               if (item.volumeInfo.imageLinks?.thumbnail) {
                 const coverImageUrl =
@@ -59,9 +59,9 @@ const AddBook: React.FC<AddBookProps> = function (props) {
                     "https://"
                   );
                 return (
-                  <WrapItem>
+                  <GridItem>
                     <Image
-                      boxSize="160px"
+                      boxSize="200px"
                       src={coverImageUrl}
                       onClick={() => {
                         const title = item.volumeInfo.title;
@@ -74,11 +74,11 @@ const AddBook: React.FC<AddBookProps> = function (props) {
                         cursor: "pointer",
                       }}
                     ></Image>
-                  </WrapItem>
+                  </GridItem>
                 );
               }
             })}
-          </Wrap>
+          </Grid>
         </VStack>
       </Box>
     </FormControl>
