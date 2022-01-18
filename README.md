@@ -9,8 +9,7 @@ Database: Postgres
 
 ### Features: 
 
-1. CRUD reading list
-2. Tags/categories to sort reading material
-3. Login and user-management system
-4. Graphical Book cover UI
-5. Integration with Google Books Search API
+1. CRUD Reading list
+2. Sort books into stacks
+3. Graphical Book cover UI
+4. Integration with Google Books Search API
