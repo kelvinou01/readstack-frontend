@@ -8,7 +8,7 @@ export async function createUser(data: ICreateUserRequest) {
     method: "POST",
     url: "/users",
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
   return response.data;
@@ -19,7 +19,7 @@ export async function retrieveUser(id: number) {
     method: "GET",
     url: "/users/" + id,
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
   return response.data;
@@ -30,7 +30,7 @@ export async function listUsers() {
     method: "GET",
     url: "/users",
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
 
@@ -43,7 +43,7 @@ export async function updateUser(id: number, data: IUpdateUserRequest) {
     method: "PUT",
     url: "/users/" + id,
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
 
@@ -55,7 +55,7 @@ export async function deleteUser(id: number) {
     method: "DELETE",
     url: "/users/" + id,
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
 

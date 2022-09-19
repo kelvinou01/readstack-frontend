@@ -12,7 +12,7 @@ export async function createStack(data: ICreateStackRequest) {
     method: "POST",
     url: "/stacks",
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
   return response.data;
@@ -45,7 +45,7 @@ export async function updateStack(id: number, data: IUpdateStackRequest) {
     method: "PUT",
     url: "/stacks/" + id,
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
 
@@ -57,7 +57,7 @@ export async function deleteStack(id: number) {
     method: "DELETE",
     url: "/stacks/" + id,
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
   return response.data;

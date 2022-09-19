@@ -8,7 +8,7 @@ export async function createBook(data: ICreateBookRequest) {
     method: "POST",
     url: "/books",
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
   return response.data;
@@ -40,7 +40,7 @@ export async function deleteBook(id: number) {
     method: "DELETE",
     url: "/books/" + id,
     headers: {
-      Authorization: localStorage.getItem("token") as string,
+      Authorization: "Bearer " + localStorage.getItem("token") as string,
     },
   });
 
