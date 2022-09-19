@@ -2,7 +2,7 @@ import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
 import { IResponse } from "./response";
 
 const client = axios.create({
-  baseURL: "http://localhost:3333/", // "https://readstack-backend.herokuapp.com/",
+  baseURL: 'http://157.245.144.155:3333/',
   timeout: 10 * 1000,
   withCredentials: false,
 });
