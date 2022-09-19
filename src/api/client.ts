@@ -2,7 +2,7 @@ import axios, { AxiosPromise, AxiosRequestConfig } from "axios";
 import { IResponse } from "./response";
 
 const client = axios.create({
-  baseURL: 'http://157.245.144.155:3333/',
+  baseURL: "https://api.readstack.net/",
   timeout: 10 * 1000,
   withCredentials: false,
 });
