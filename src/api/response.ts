@@ -33,3 +33,11 @@ export interface ILoginResponse {
   token: number;
   username: string;
 }
+
+export interface IError {
+  response: IErrorResponse;
+}
+
+export interface IErrorResponse {
+  status: number
+}

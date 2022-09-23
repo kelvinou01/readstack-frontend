@@ -2,7 +2,7 @@ import request from "./client";
 import {
   ICreateStackRequest,
   IListStacksRequest,
-  IUpdateStackRequest,
+  IUpdateStackRequest
 } from "./request";
 import { IStackResponse } from "./response";
 
@@ -30,13 +30,12 @@ export async function retrieveStack(id: number) {
 export async function listStacks(
   params: IListStacksRequest
 ): Promise<IStackResponse[] | undefined> {
-  const response = await request({
-    params,
-    method: "GET",
-    url: "/stacks",
-  });
-
-  return response.data.data;
+    const response = await request({
+      params,
+      method: "GET",
+      url: "/stacks",
+    });
+    return response.data.data
 }
 
 export async function updateStack(id: number, data: IUpdateStackRequest) {

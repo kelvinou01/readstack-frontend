@@ -13,17 +13,18 @@ import {
   ModalOverlay,
   Text,
   useDisclosure,
-  VStack,
+  VStack
 } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
 import { useQuery, useQueryClient } from "react-query";
 import { Link as ReachLink, useParams } from "react-router-dom";
 import { deleteBook } from "../api/books";
+import { IError } from "../api/response";
 import {
   createStack,
   deleteStack,
   listStacks,
-  updateStack,
+  updateStack
 } from "../api/stacks";
 import Stack from "../Components/Stack";
 
@@ -34,19 +35,45 @@ export default function ProfilePage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [newStackName, setNewStackName] = useState("");
 
+  const [profileDoesNotExist, setProfileDoesNotExist] = useState(false)
+
   const {
     data: stacks,
     error,
     refetch,
-  } = useQuery(["username", params.username], () =>
-    listStacks({ username: params.username })
+  } = useQuery(
+    ["username", params.username], 
+    () => listStacks({ username: params.username }), 
+    {
+      retry: (failureCount, error: IError) => {
+        if (error.response.status == 404) {
+          setProfileDoesNotExist(false)
+          return false
+        } else {
+          failureCount++
+          return failureCount <= 4
+        }
+      },
+    }
   );
 
   const isOwnProfile = useMemo(() => {
     return localStorage.getItem("username") === params.username;
   }, [localStorage.getItem("username"), params.username]);
 
-  if (stacks === undefined) {
+  if (profileDoesNotExist) {
+    return (
+      <>
+        <Flex justifyContent="center">
+          <VStack spacing={0}>
+          <Text fontSize="5xl">🤡</Text>
+          <Text fontSize="xl" color="brand.600" fontWeight="600">This user does not exist</Text>
+          </VStack>
+          
+        </Flex>
+      </>
+    );
+  } else if (stacks === undefined) {
     return (
       <>
         <Flex justifyContent="center">
