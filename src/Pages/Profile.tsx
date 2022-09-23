@@ -47,7 +47,7 @@ export default function ProfilePage() {
     {
       retry: (failureCount, error: IError) => {
         if (error.response.status == 404) {
-          setProfileDoesNotExist(false)
+          setProfileDoesNotExist(true)
           return false
         } else {
           failureCount++
