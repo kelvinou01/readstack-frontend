@@ -11,6 +11,7 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Spinner,
   Text,
   useDisclosure,
   VStack
@@ -77,7 +78,7 @@ export default function ProfilePage() {
     return (
       <>
         <Flex justifyContent="center">
-          <Text fontSize="5xl">🤡</Text>
+          <Spinner size="xl" color="brand.500" thickness="4px"></Spinner>
         </Flex>
       </>
     );
